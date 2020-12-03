@@ -1,0 +1,9 @@
+---
+- name: This sets up an httpd webserver
+  hosts: INFSYONE15-Centos03
+
+  tasks:
+  - name: upgrade all packages
+    yum:
+      name: '*'
+      state: latest

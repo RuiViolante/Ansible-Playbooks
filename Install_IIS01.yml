@@ -1,0 +1,14 @@
+---
+- name: Windows Server Demo
+  hosts: "{{host_name}}"
+
+  tasks:
+
+  - name: Instalar o IIS Web-Server com as suas features
+    win_feature:
+      name: "{{service}}"
+      state: present
+      include_sub_features: yes
+      include_management_tools: yes
+    register: win_feature
+

@@ -1,0 +1,35 @@
+---
+- name: OpenSCAP
+  #  hosts: INFSYONE15-Centos02
+  hosts: "{{host_name}}"
+
+  vars:
+    oscap_profile: standard
+    oscap_policy: ssg-centos7-xccdf
+    ansible_become_password: MQpJfGXQKEFanBRjFHTdDgjH4EzjgiQZ8G86eiFwB7CukV5HBzo9zaqt9J85CjP6
+
+  tasks:
+
+  - name: install openscap scanner
+    package:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+    - openscap-scanner
+    - scap-security-guide
+    become: yes
+    become_method: sudo
+
+  - name: run openscap
+    #become: yes
+    #become_method: sudo
+    shell: oscap xccdf eval --profile {{ oscap_profile }} --results-arf /tmp/oscap-arf.xml --report /tmp/oscap-report.html --fetch-remote-resources /usr/share/xml/scap/ssg/content/{{ oscap_policy }}.xml
+    #register: output
+    register: result
+    failed_when: "'Error' in result.stderr"
+
+  - name: download report
+    fetch:
+      src: /tmp/oscap-report.html
+      dest: /var/www/html/oscap-reports/{{ inventory_hostname }}.html
+      flat: yes

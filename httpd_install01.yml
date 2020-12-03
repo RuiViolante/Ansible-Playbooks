@@ -1,0 +1,20 @@
+---
+- name: update web servers
+  hosts: "{{host_name}}"
+
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: "{{service}}"
+      state: latest
+
+  - name: ensure httpd is running
+    service:
+      name: "{{service}}"
+      state: started
+
+  - name: Open port 80 for http access
+    firewalld:
+      service: "{{service}}"
+      permanent: true
+      state: enabled

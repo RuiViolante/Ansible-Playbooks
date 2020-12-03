@@ -1,0 +1,21 @@
+---
+- name: update web servers
+  hosts: "{{host_name}}"
+
+  tasks:
+#  - name: Open port 80 for http access
+#    firewalld:
+#      service: "{{service}}"
+#      permanent: false
+#      state: enabled
+
+  - name: ensure httpd is stopped
+    service:
+      name: "{{service}}"
+      state: stopped
+
+  - name: ensure apache is removed from system
+    yum:
+      name: "{{service}}"
+      state: absent
+

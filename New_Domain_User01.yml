@@ -1,0 +1,37 @@
+---
+- name: Windows Server Demo
+  hosts: "{{host_name}}"
+
+  tasks:
+
+  - name: ter certeza que user normal existe, ou se não existir, cria o mesmo.
+    win_domain_user:
+      name: "{{username}}"
+      firstname: "{{firstname}}"
+      surname: "{{surname}}"
+      password: "{{password}}"
+      state: present
+      #present absent query
+      path: ou=CYBERSEC,dc=ansible,dc=lab,dc=local
+      street: "{{street}}"
+      city: "{{city}}"
+      state_province: "{{state_province}}"
+      postal_code: "{{postal_code}}"
+      country: "{{country_code}}"
+      attributes:
+        telephoneNumber: "{{phone_number}}"
+
+#  - name: Create a new group
+#    win_group:
+#      name: "{{group_name}}"
+#      description: Deploy Group
+#      state: present
+#      state: "{{service_state}}"
+#
+#  - name: Add a local and domain user to a local group
+#    win_group_membership:
+#      name: "{{group_membership}}"
+#      members:
+#        - ANSIBLE\"{{username}}"
+#      state: "{{add_user_state}}"
+
