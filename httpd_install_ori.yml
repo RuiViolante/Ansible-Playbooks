@@ -1,0 +1,20 @@
+---
+- name: update web servers
+  hosts: INFSYONE15-Centos02
+
+  tasks:
+  - name: ensure apache is at the latest version
+    yum:
+      name: httpd
+      state: latest
+
+  - name: ensure httpd is running
+    service:
+      name: httpd
+      state: started
+
+  - name: Open port 80 for http access
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
