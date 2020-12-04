@@ -1,6 +1,6 @@
 ---
 - name: update web servers
-  hosts: INFSYONE15-Centos02
+  hosts: "{{host_name}}"
 
   tasks:
   - name: ensure apache is at the latest version
