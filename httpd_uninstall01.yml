@@ -3,7 +3,7 @@
   hosts: "{{host_name}}"
 
   tasks:
-  - name: Open port 80 for http access
+  - name: Close port 80 for http access
     firewalld:
       service: "{{FWservice}}"
       permanent: true
