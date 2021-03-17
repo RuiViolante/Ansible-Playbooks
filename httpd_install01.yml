@@ -15,6 +15,6 @@
 
   - name: Open port 80 for http access
     firewalld:
-      service: "{{service}}"
+      service: httpd
       permanent: true
       state: enabled
