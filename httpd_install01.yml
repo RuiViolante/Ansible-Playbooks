@@ -18,3 +18,8 @@
       service: "{{FWservice}}"
       permanent: true
       state: enabled
+      
+  - name: ensure Firewall is running
+    service:
+      name: firewalld
+      state: started
