@@ -16,5 +16,5 @@
   - name: Open port 80 for http access
     firewalld:
       service: "{{FWservice}}"
-      permanent: yes
+      permanent: true
       state: enabled
