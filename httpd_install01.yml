@@ -7,17 +7,11 @@
     yum:
       name: "{{service}}"
       state: latest
-      notify:
-      - restart "{{service}}"
-   
-  - name: Ensure apache is running
-      name: "{{service}}"
-      state: started
 
-#  - name: ensure httpd is running
-#    service:
-#      name: "{{service}}"
-#      state: started
+  - name: ensure httpd is running
+    service:
+      name: httpd
+      state: started
 
   - name: Open port 80 for http access
     firewalld:
