@@ -1,5 +1,5 @@
 ---
-- name: update web servers
+- name: Uninstall web servers
   hosts: "{{host_name}}"
 
   tasks:
