@@ -3,11 +3,11 @@
   hosts: "{{host_name}}"
 
   tasks:
-#  - name: Open port 80 for http access
-#    firewalld:
-#      service: "{{service}}"
-#      permanent: false
-#      state: enabled
+  - name: Open port 80 for http access
+    firewalld:
+      service: "{{FWservice}}"
+      permanent: true
+      state: disabled
 
   - name: ensure httpd is stopped
     service:
@@ -18,4 +18,3 @@
     yum:
       name: "{{service}}"
       state: absent
-
