@@ -1,6 +1,6 @@
 ---
 - name: This sets up an httpd webserver
-  hosts: INFSYONE15-Centos03
+  hosts: "{{host_name}}"
 
   tasks:
   - name: upgrade all packages
